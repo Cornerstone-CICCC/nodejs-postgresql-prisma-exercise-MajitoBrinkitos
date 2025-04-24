@@ -1,13 +1,21 @@
 import { PrismaClient, Product } from "@prisma/client";
 
 const prisma = new PrismaClient()
+type Product = Prisma.Product;
 
-// Fetch all products
+//Fetch all products
 const fetchAllProducts = async () => {
-    const products = await prisma.product.findMany()
-    return products
+   return await prisma.product.findMany()
+}
+
+//Create new product
+const createProduct = async (data: Omit<Product, 'id'>) => {
+    return await prisma.product.create({
+        data
+    })
 }
 
 export default {
-    fetchAllProducts
+    fetchAllProducts,
+    createProduct
 }

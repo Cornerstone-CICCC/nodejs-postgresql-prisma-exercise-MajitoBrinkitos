@@ -24,6 +24,22 @@ const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).json({ message: 'Server error' });
     }
 });
+//Add new product
+const addProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productName, price } = req.body;
+        const product = yield product_model_1.default.createProduct({
+            productName,
+            price
+        });
+        res.status(201).json(product);
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Unable to add product' });
+    }
+});
 exports.default = {
-    getAllProducts
+    getAllProducts,
+    addProduct
 };

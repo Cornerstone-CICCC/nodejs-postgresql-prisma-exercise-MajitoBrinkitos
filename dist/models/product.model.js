@@ -11,11 +11,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-// Fetch all products
+//Fetch all products
 const fetchAllProducts = () => __awaiter(void 0, void 0, void 0, function* () {
-    const products = yield prisma.product.findMany();
-    return products;
+    return yield prisma.product.findMany();
+});
+//Create new product
+const createProduct = (data) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield prisma.product.create({
+        data
+    });
 });
 exports.default = {
-    fetchAllProducts
+    fetchAllProducts,
+    createProduct
 };
